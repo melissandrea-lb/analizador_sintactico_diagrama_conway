@@ -1,0 +1,52 @@
+'''tokens 
+( = 50
+) = 55
+or = 60
+and = 65
+not = 70
+true = 75
+false = 80
+termino = 2000
+factor = 1000
+''' 
+def start(tokens):
+	error = ''
+	i = 0 
+	j = 0 
+	i, error = expresion_logica(tokens,i)
+ 	if error != '':
+		return error
+	if i<len(tokens):
+		return f¨Error sintactico simbolo inesperado '{tokens[i]}'¨
+	return 'VALIDO'
+
+def expresion_logica(tokens,i):
+	while i<len(tokens) and tokens[i] == 50:
+		if i<len(tokens) and tokens[i] == 50:
+			i = i + 1
+		else:
+			return i, 'La expresion debe comenzar con ('
+		elif tokens[i] == 60 or tokens[i] == 65 or tokens[i] == 2000 or tokens[i] == '':
+			i = i + 1
+		else:
+			return i, 'La expresion debe continuar con or, and, termino'
+		elif tokens[i] == 2000:
+			i = i + 1
+		else:
+			return i, 'La expresion debe continuar con termino'
+		elif tokens[i] == 65 or tokens[i] == 1000 or tokens[i] == '':
+			i = i + 1
+		else:
+			return i, 'La expresion debe continuar and, factor'
+		elif tokens[i] == 70 or tokens[i] == 75 or tokens[i] == 80 or tokens[i] == 50:
+			if tokens[i] == 50:
+				new_tokens = tokens[i:len(tokens)] 
+				expresion_logica(new_tokens, j)
+			i = i + 1
+		else:
+			return i, 'La expresion debe continuar not, (, true, false'
+		elif tokens[i] == 55:
+			i = i + 1
+		else: 
+			return i, 'La expresion debe terminar en )'
+	
