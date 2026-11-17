@@ -1,0 +1,60 @@
+'''tokens 
+def = 100
+function_name = 2000
+( = 60
+parameter = 3000
+, = 65
+) = 70
+: = 75
+simple_stmt = 4000
+statement = 5000
+''' 
+def start(tokens):
+	error = ''
+	i = 0 
+	j = 0 
+	i, error = definicion_funciones(tokens,i)
+ 	if error != '':
+		return error
+	if i<len(tokens):
+		return f¨Error sintactico simbolo inesperado '{tokens[i]}'¨
+	return 'VALIDO'
+
+def definicion_funciones(tokens,i):
+	while i<len(tokens) and tokens[i] == 60:
+		if i<len(tokens) and tokens[i] == 60:
+			i = i + 1
+		else:
+			return i, 'La definicion debe comenzar con def'
+		elif tokens[i] == :
+			i = i + 1
+		else:
+			return i, 'La definicion debe continuar con or, and, termino'
+		elif tokens[i] == 2000:
+			i = i + 1
+		else:
+			return i, 'La definicion debe continuar con el nombre de la funcion'
+		elif tokens[i] == 60:
+			i = i + 1
+		else:
+			return i, 'La definicion debe continuar con ('
+		elif tokens[i] == 3000:
+			i = i + 1
+		else:
+			return i, 'La definicion debe continuar con un parametro '
+		elif tokens[i] == 65:
+			i = i + 1
+		else: 
+			return i, 'La definicion debe continuar con una , '
+		elif tokens[i] == 3000:
+			i = i + 1
+		else:
+			return i, 'La definicion debe continuar con un parametro '
+		elif tokens[i] == 70:
+			i = i + 1
+		else: 
+			return i, 'La definicion debe continuar con un ) '
+		elif tokens[i] == 4000 or tokens[i] == 5000:
+			i = i + 1
+		else: 
+			return i, 'La definicion debe tener un statement(s)'
